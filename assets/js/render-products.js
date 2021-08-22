@@ -1,59 +1,3 @@
-const API_CATEGORIES = "https://shop-rest-api.test.com/api/categories";
-const API_PRODUCTS = "https://shop-rest-api.test.com/api/products";
-const category_id = null;
-
-const htmlCategories = document.querySelector("#categories");
-const htmlProducts = document.querySelector("#products");
-
-addElementCategory();
-addElementProducts(getProductsApiUrl(category_id));
-
-document.addEventListener('click',function(e){
-	if(e.target.tagName.toLowerCase() === 'li'){
-	    let categoryId = e.target.value;
-	    addElementProducts(getProductsApiUrl(categoryId));
-	}
-})	
-
-function getProductsApiUrl(categoryId){
-	if(categoryId){
-		return API_PRODUCTS+'?category_id='+categoryId;
-	}
-	return API_PRODUCTS;
-}
-
-function addElementCategory(){
-	fetch(API_CATEGORIES)
-	.then((response) => response.json())
-	.then((categories) => {
-		for (category of categories){
-			renderCategory(category);	    	
-	    } 
-	});	
-}
-
-function addElementProducts(apiURl){	
-	console.log(apiURl)
-	fetch(apiURl)
-	.then((response) => response.json())
-	.then((products) => {		
-		htmlProducts.innerHTML = "";		
-		for(product of products){
-			renderProduct(product);
-		}
-	});	
-}
-
-function renderCategory(category) {	
-	let elementTemplate = document.querySelector("#templateCategory");
-	let template = document.importNode(elementTemplate.content, true);
-
-	renderCategoryName(template, category);
-
-	htmlCategories.appendChild(template);
-}
-
-
 function renderProduct(product) {	
 	let elementTemplate = document.querySelector("#templateProduct");
 	let template = document.importNode(elementTemplate.content, true);
@@ -65,11 +9,6 @@ function renderProduct(product) {
 	renderProductDiscount(template, product.discount);
 
 	htmlProducts.appendChild(template);
-}
-
-function renderCategoryName(template, category){
-	template.querySelector('li').innerHTML = category.name;
-	template.querySelector('li').value = category.id;
 }
 
 function renderProductImage(template, product){
@@ -124,7 +63,4 @@ function getFormattedPrice(price) {
 function getFormattedDiscount(discount) {	
 	return discount+'%';
 }
-
-
-
 
