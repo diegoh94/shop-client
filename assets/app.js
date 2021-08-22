@@ -35,7 +35,12 @@ fetch(API_PRODUCTS)
 			});
 
 			contentTemplateProduct.querySelector('h3.card-title').innerHTML = product.name;
-			contentTemplateProduct.querySelector('img.card-img-top').src = product.url_image;
+			
+			if(product.url_image == null || product.url_image ==="")
+				contentTemplateProduct.querySelector('img.card-img-top').src = 'assets/images/no_image.png';
+			else
+				contentTemplateProduct.querySelector('img.card-img-top').src = product.url_image;
+			
 			contentTemplateProduct.querySelector('img.card-img-top').alt = product.name;
 			contentTemplateProduct.querySelector('img.card-img-top').title = product.name;
 			contentTemplateProduct.querySelector('span.price').innerHTML = formatCurrency.format(product.price);
