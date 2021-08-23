@@ -1,8 +1,8 @@
 /**
  *URL para consumir API
  */
-const API_CATEGORIES = "https://shop-rest-api.test.com/api/categories";
-const API_PRODUCTS = "https://shop-rest-api.test.com/api/products";
+const API_CATEGORIES = "http://147.182.160.199/api/categories";
+const API_PRODUCTS = "http://147.182.160.199/api/products";
 
 /**
  *Variables que serán usadas como parámetros GET
