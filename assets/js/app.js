@@ -19,12 +19,11 @@ const htmlProducts = document.querySelector("#products");
 const inputSearch = document.querySelector('#searchProduct');
 
 /**
- *Métodos que se ejecutan al cargar la vista para desplegar los productos
+ *Métodos que se ejecutan al cargar la vista para desplegar los productos y/o categorías
  */
 addElementCategory();
 addElementProducts(getProductsApiUrl(category_id, filterType));
 listenToEvents();
-
 
 /**
  * Función que escucha eventos para realizar peticiones a la pai según corresponda
@@ -73,6 +72,7 @@ function searchProducts(e){
  */
 function addElementCategory(){
 	fetch(API_CATEGORIES)
+	console.log(API_CATEGORIES)
 	.then((response) => response.json())
 	.then((categories) => {
 		for (category of categories){
