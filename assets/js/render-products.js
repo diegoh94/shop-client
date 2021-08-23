@@ -1,34 +1,46 @@
+/**
+ * Función que se encarga de habilitar el template para luego enviarlo
+ * como parámetro para insertar los valores correspondientes 
+ * y finalmente renderizarlo en el navegador.
+ */
 function renderProduct(product) {	
 	let elementTemplate = document.querySelector("#templateProduct");
 	let template = document.importNode(elementTemplate.content, true);
 	
 	renderProductImage(template, product);
 	renderProductTitle(template, product.name);
-	renderProductCategory(template, product.category);
 	renderProductPrice(template, product.price);
 	renderProductDiscount(template, product.discount);
 
 	htmlProducts.appendChild(template);
 }
 
+/**
+ * Función que añade los atributos de imagen al template.
+ */
 function renderProductImage(template, product){
 	template.querySelector('img.card-img-top').src = getImageUrl(product.url_image);
 	template.querySelector('img.card-img-top').alt = product.name;
 	template.querySelector('img.card-img-top').title = product.name;
 }
 
+/**
+ * Función que añade el nombre del producto al template.
+ */
 function renderProductTitle(template, name){
 	template.querySelector('h3.card-title').innerHTML = name;
 }
 
-function renderProductCategory(template, category){
-	template.querySelector('a.category').innerHTML = category;
-}
-
+/**
+ * Función que añade el precio del producto al template.
+ */
 function renderProductPrice(template, price){
 	template.querySelector('span.price').innerHTML = getFormattedPrice(price);
 }
 
+/**
+ * Función que añade el descuento del producto al template.
+ */
 function renderProductDiscount(template, discount){
 	if(discount > '0'){
 		template.querySelector('div.discount').innerHTML = getFormattedDiscount(discount);
@@ -60,6 +72,9 @@ function getFormattedPrice(price) {
 	return formatCurrency.format(price);
 }
 
+/**
+ * Función que añade el precio del producto al template.
+ */
 function getFormattedDiscount(discount) {	
 	return discount+'%';
 }
