@@ -71,8 +71,8 @@ function searchProducts(e){
  *de Categorías y enviar a renderizar el json obtenido
  */
 function addElementCategory(){
-	fetch(API_CATEGORIES)
 	console.log(API_CATEGORIES);
+	fetch(API_CATEGORIES)	
 	.then((response) => response.json())
 	.then((categories) => {
 		for (category of categories){
