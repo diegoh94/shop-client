@@ -72,7 +72,7 @@ function searchProducts(e){
  */
 function addElementCategory(){
 	fetch(API_CATEGORIES)
-	console.log(API_CATEGORIES)
+	console.log(API_CATEGORIES);
 	.then((response) => response.json())
 	.then((categories) => {
 		for (category of categories){
