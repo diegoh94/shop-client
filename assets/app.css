@@ -21,3 +21,11 @@
 	border-width: 2px;
 	border-color: #00000020;
 }
+.loading-indicator{
+	display: flex;
+	width: 100%;
+}
+.loading-indicator img{
+	margin: auto; 
+	height: 100px; 
+}

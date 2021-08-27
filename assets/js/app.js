@@ -21,6 +21,7 @@ const inputSearch = document.querySelector('#searchProduct');
 /**
  *Métodos que se ejecutan al cargar la vista para desplegar los productos y/o categorías
  */
+showLoadingIndicator();
 addElementCategory();
 addElementProducts(getProductsApiUrl(category_id, filterType));
 listenToEvents();
@@ -40,7 +41,8 @@ function listenToEvents(){
 function isCategory	(e){
 	if(e.target.tagName.toLowerCase() === 'li'){
 	    category_id = e.target.value;
-	    filterType = 'byCategory';	    
+	    filterType = 'byCategory';	 
+	    showLoadingIndicator();   
 	    activateCategory(e);
 	    addElementProducts(getProductsApiUrl(category_id, filterType));
 	}
@@ -63,6 +65,7 @@ function activateCategory(e){
 function searchProducts(e){
 	character_like = e.target.value;
 	filterType = 'searchProducts'
+	showLoadingIndicator();
 	addElementProducts(getProductsApiUrl(character_like, filterType));
 }
 
@@ -89,8 +92,8 @@ function addElementProducts(apiURl){
 	console.log(apiURl)
 	fetch(apiURl)
 	.then((response) => response.json())
-	.then((products) => {		
-		htmlProducts.innerHTML = "";		
+	.then((products) => {	
+		clearContainerHTML(htmlProducts);		
 		for(product of products){
 			renderProduct(product);
 		}
@@ -109,6 +112,24 @@ function getProductsApiUrl(data, filterType){
 	}
 	return API_PRODUCTS;
 }
+
+/**
+ *Inserta loading indicator en contenedor
+ */
+ function showLoadingIndicator(){
+ 	let elementTemplate = document.querySelector("#templateLoadingIndicator");
+	let template = document.importNode(elementTemplate.content, true);
+	clearContainerHTML(htmlProducts);
+	htmlProducts.appendChild(template);
+ }
+/**
+ *Limpiar contenedor
+ */
+ function clearContainerHTML(container){
+ 	container.innerHTML = "";
+ }
+
+
 
 
 
