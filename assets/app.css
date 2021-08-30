@@ -29,3 +29,19 @@
 	margin: auto; 
 	height: 100px; 
 }
+.content-search{
+	display: flex; 
+	width: 70%;
+}
+@media(max-width: 768px){
+	.content-search{
+		display: flex; 
+		width: 100%;
+	}
+}
+.search-button{
+	margin-left: 10px;
+}
+#contentAlert{
+	color: red;
+}
