@@ -180,7 +180,9 @@ function enterValidate(e){
 		searchProducts(e);
 	}
 }
-
+/**
+ *Valida si el imput tiene un valor.
+ */
 function validateText(){
 	if(inputSearch.value.length == 0){
 		let contentAlert = document.querySelector('#contentAlert');
